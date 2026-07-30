@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Order – ForkFresh</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ===== TOP NAV ===== -->
+  <nav class="top-nav">
+    <a href="../rider-dashboard/index.html" class="top-nav-logo">
+      <span class="logo-fork">fork</span><span class="logo-fresh">fresh</span>
+    </a>
+    <a href="../rider-dashboard/index.html" class="back-link">
+      <i class="fa-solid fa-chevron-left"></i> Back to Dashboard
+    </a>
+  </nav>
+
+  <!--  MAIN CARD  -->
+  <main class="page-wrapper">
+    <div class="track-card">
+
+      <!-- Title -->
+      <h1 class="page-title">Track Your Order</h1>
+
+      <!-- ── Top section: order info + map ── -->
+      <div class="top-section">
+
+        <!-- Left: order details -->
+        <div class="order-info">
+          <h2 class="order-number">Order #FF125679</h2>
+          <p class="order-date">Placed on May 24, 2023 &nbsp;-&nbsp; 02:30 PM</p>
+
+          <div class="status-badge">
+            <i class="fa-regular fa-clock"></i>
+            <span>Out for Delivery</span>
+          </div>
+
+          <div class="eta-block">
+            <p class="eta-label">Estimated Delivery Time</p>
+            <p class="eta-time">Today, 05:00 PM – 05:30 PM</p>
+          </div>
+        </div>
+
+        <!-- Right: map -->
+        <div class="map-container">
+          <div class="map-inner" id="mapPlaceholder">
+            <!-- SVG map illustration -->
+            <svg class="map-svg" viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg">
+              <!-- Background -->
+              <rect width="460" height="300" fill="#e8e0d0"/>
+
+              <!-- Roads - horizontal -->
+              <rect x="0" y="55" width="460" height="14" fill="#f5f0e8"/>
+              <rect x="0" y="110" width="460" height="10" fill="#f5f0e8"/>
+              <rect x="0" y="160" width="460" height="14" fill="#fff"/>
+              <rect x="0" y="220" width="460" height="10" fill="#f5f0e8"/>
+              <rect x="0" y="265" width="460" height="10" fill="#f5f0e8"/>
+
+              <!-- Roads - vertical -->
+              <rect x="55" y="0" width="10" height="300" fill="#f5f0e8"/>
+              <rect x="110" y="0" width="14" height="300" fill="#fff"/>
+              <rect x="180" y="0" width="10" height="300" fill="#f5f0e8"/>
+              <rect x="250" y="0" width="14" height="300" fill="#fff"/>
+              <rect x="330" y="0" width="10" height="300" fill="#f5f0e8"/>
+              <rect x="400" y="0" width="10" height="300" fill="#f5f0e8"/>
+
+              <!-- Blocks / buildings -->
+              <rect x="15" y="15" width="35" height="35" rx="2" fill="#d4c9b0"/>
+              <rect x="68" y="15" width="35" height="35" rx="2" fill="#d4c9b0"/>
+              <rect x="130" y="15" width="45" height="35" rx="2" fill="#cfc3a5"/>
+              <rect x="195" y="15" width="48" height="35" rx="2" fill="#d4c9b0"/>
+              <rect x="265" y="15" width="55" height="35" rx="2" fill="#cfc3a5"/>
+              <rect x="345" y="15" width="45" height="35" rx="2" fill="#d4c9b0"/>
+
+              <rect x="15" y="75" width="35" height="28" rx="2" fill="#d4c9b0"/>
+              <rect x="68" y="75" width="35" height="28" rx="2" fill="#e0d5c0"/>
+              <rect x="130" y="75" width="45" height="28" rx="2" fill="#d4c9b0"/>
+              <rect x="195" y="75" width="48" height="28" rx="2" fill="#e0d5c0"/>
+              <rect x="265" y="75" width="55" height="28" rx="2" fill="#d4c9b0"/>
+              <rect x="345" y="75" width="45" height="28" rx="2" fill="#cfc3a5"/>
+
+              <rect x="15" y="125" width="88" height="28" rx="2" fill="#d4c9b0"/>
+              <rect x="130" y="125" width="110" height="28" rx="2" fill="#e0d5c0"/>
+              <rect x="265" y="125" width="120" height="28" rx="2" fill="#d4c9b0"/>
+
+              <!-- Water / park area -->
+              <ellipse cx="370" cy="200" rx="60" ry="30" fill="#c8dde8" opacity="0.7"/>
+              <rect x="15" y="178" width="80" height="35" rx="2" fill="#b8d4a0" opacity="0.8"/>
+              <rect x="195" y="178" width="48" height="35" rx="2" fill="#d4c9b0"/>
+
+              <rect x="15" y="235" width="35" height="24" rx="2" fill="#d4c9b0"/>
+              <rect x="68" y="235" width="35" height="24" rx="2" fill="#e0d5c0"/>
+              <rect x="130" y="235" width="110" height="24" rx="2" fill="#d4c9b0"/>
+              <rect x="265" y="235" width="55" height="24" rx="2" fill="#e0d5c0"/>
+
+              <!-- Delivery route -->
+              <polyline
+                points="130,220 130,160 180,160 250,160 250,110 330,110 330,62 400,62 430,62"
+                fill="none"
+                stroke="#1a5c1a"
+                stroke-width="4"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke-dasharray="none"
+              />
+
+              <!-- Destination pin (orange) -->
+              <g transform="translate(115,200)">
+                <ellipse cx="0" cy="3" rx="8" ry="4" fill="rgba(0,0,0,0.15)"/>
+                <path d="M0,-24 C-10,-24 -16,-16 -16,-8 C-16,4 0,20 0,20 C0,20 16,4 16,-8 C16,-16 10,-24 0,-24 Z" fill="#e8652a"/>
+                <circle cx="0" cy="-8" r="6" fill="white"/>
+              </g>
+
+              <!-- Rider icon (top-right area) -->
+              <g transform="translate(425,52)">
+                <ellipse cx="0" cy="3" rx="10" ry="5" fill="rgba(0,0,0,0.15)"/>
+                <!-- Bike body -->
+                <circle cx="-8" cy="0" r="6" fill="none" stroke="#1a5c1a" stroke-width="2"/>
+                <circle cx="8" cy="0" r="6" fill="none" stroke="#1a5c1a" stroke-width="2"/>
+                <path d="M-8,0 L0,-8 L8,0" fill="none" stroke="#1a5c1a" stroke-width="2"/>
+                <path d="M0,-8 L2,-14" stroke="#1a5c1a" stroke-width="2"/>
+                <!-- Rider head -->
+                <circle cx="2" cy="-18" r="5" fill="#c87941"/>
+                <!-- Helmet -->
+                <path d="M-3,-18 Q2,-26 7,-18" fill="#1a5c1a"/>
+                <!-- Food box on back -->
+                <rect x="-16" y="-10" width="10" height="8" rx="1" fill="#e8652a"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Progress tracker ── -->
+      <div class="progress-tracker">
+        <div class="tracker-line">
+          <div class="tracker-line-fill"></div>
+        </div>
+
+        <div class="tracker-steps">
+
+          <div class="step completed">
+            <div class="step-icon">
+              <i class="fa-solid fa-house"></i>
+            </div>
+            <p class="step-label">Order Placed</p>
+            <p class="step-time">02:30 PM</p>
+          </div>
+
+          <div class="step completed">
+            <div class="step-icon">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <p class="step-label">Preparing</p>
+            <p class="step-time">02:40 PM</p>
+          </div>
+
+          <div class="step completed">
+            <div class="step-icon">
+              <i class="fa-solid fa-car"></i>
+            </div>
+            <p class="step-label">On-the-way</p>
+            <p class="step-time">04:15 PM</p>
+          </div>
+
+          <div class="step active">
+            <div class="step-icon">
+              <i class="fa-solid fa-motorcycle"></i>
+            </div>
+            <p class="step-label">Out for Delivery</p>
+            <p class="step-time">04:50 PM</p>
+          </div>
+
+          <div class="step">
+            <div class="step-icon">
+              <i class="fa-regular fa-circle-check"></i>
+            </div>
+            <p class="step-label">Delivered</p>
+            <p class="step-time">05:30 PM</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Divider ── -->
+      <hr class="section-divider" />
+
+      <!-- ── Rider info ── -->
+      <div class="rider-section">
+
+        <div class="rider-left">
+          <img src="images/IMG1.png" alt="Jean Claude" class="rider-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Jean+Claude&background=c87941&color=fff&size=72'" />
+          <div class="rider-details">
+            <p class="rider-role">Your Rider</p>
+            <p class="rider-name">Jean Claude</p>
+            <p class="rider-phone">+237 6 78 123 456</p>
+          </div>
+        </div>
+
+        <div class="rider-center">
+          <span class="rider-dot"></span>
+        </div>
+
+        <div class="rider-actions">
+          <button class="action-btn" title="Call rider">
+            <i class="fa-solid fa-phone"></i>
+          </button>
+          <button class="action-btn" title="Chat with rider">
+            <i class="fa-solid fa-comment-dots"></i>
+          </button>
+        </div>
+
+        <div class="rider-help">
+          Need help? <a href="#" class="help-link">Contact Support</a>
+        </div>
+
+      </div>
+
+    </div><!-- /.track-card -->
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div>
+      <div class="footer-logo">
+        <img src="images/whiteand prange.PNG" alt="ForkFresh">
+      </div>
+      <p>Your favourite go-to frozen food delivery platform.</p>
+    </div>
+
+    <div>
+      <h3>Categories</h3>
+      <p>About Us</p>
+      <p>Terms &amp; Conditions</p>
+    </div>
+
+    <div>
+      <h3>Track Order</h3>
+      <p><a href="index.html" style="color:#ccc;text-decoration:none;">Track Order</a></p>
+      <p>Contact Us</p>
+    </div>
+
+    <div>
+      <h3>Support</h3>
+      <p>Email</p>
+    </div>
+
+    <div>
+      <h3>Follow Us</h3>
+      <p>Facebook</p>
+      <p>TikTok</p>
+      <p>Instagram</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

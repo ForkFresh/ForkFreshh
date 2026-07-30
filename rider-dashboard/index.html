@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rider Dashboard – ForkFresh</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!--LAYOUT WRAPPER-->
+  <div class="layout">
+
+    <!--SIDEBAR-->
+    <aside class="sidebar" id="sidebar">
+
+      <!-- Logo -->
+      <div class="sidebar-logo">
+        <a href="index.html" style="text-decoration:none;"><span class="logo-fork">fork</span><span class="logo-fresh">fresh</span></a>
+      </div>
+
+      <!-- Rider profile -->
+      <div class="sidebar-profile">
+        <div class="profile-avatar-wrap">
+          <img
+            src="images/IMG1.png"
+            alt="Jean Claude"
+            class="profile-avatar"
+            onerror="this.src='https://ui-avatars.com/api/?name=Jean+Claude&background=c87941&color=fff&size=72'"
+          />
+          <span class="profile-status-dot"></span>
+        </div>
+        <div class="profile-info">
+          <p class="profile-name">Jean Claude</p>
+          <p class="profile-id">Rider ID: #RDR2456</p>
+          <p class="profile-online"><span class="online-dot"></span> Online</p>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-page="dashboard">
+          <i class="fa-solid fa-house"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="../track-order/index.html" class="nav-item" data-page="orders">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span>My Orders</span>
+        </a>
+        <a href="#" class="nav-item" data-page="earnings">
+          <i class="fa-solid fa-tags"></i>
+          <span>Earnings</span>
+        </a>
+        <a href="#" class="nav-item" data-page="wallet">
+          <i class="fa-solid fa-wallet"></i>
+          <span>Wallet</span>
+        </a>
+        <a href="#" class="nav-item" data-page="performance">
+          <i class="fa-solid fa-circle-user"></i>
+          <span>Performance</span>
+        </a>
+        <a href="#" class="nav-item" data-page="profile">
+          <i class="fa-regular fa-user"></i>
+          <span>Profile</span>
+        </a>
+        <a href="#" class="nav-item" data-page="settings">
+          <i class="fa-solid fa-gear"></i>
+          <span>Settings</span>
+        </a>
+        <a href="#" class="nav-item" data-page="help">
+          <i class="fa-regular fa-circle-question"></i>
+          <span>Help &amp; Support</span>
+        </a>
+        <a href="#" class="nav-item logout-item">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </nav>
+
+    </aside>
+
+    <!--MAIN CONTENT -->
+    <div class="main-wrap">
+
+      <!-- ── Top bar ── -->
+      <header class="topbar">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="topbar-greeting">
+          <h1 class="greeting-title">Good morning, Jean Claude! 👋</h1>
+          <p class="greeting-sub">Here's your overview for today.</p>
+        </div>
+
+        <div class="topbar-right">
+          <button class="notif-btn" aria-label="Notifications">
+            <i class="fa-regular fa-bell"></i>
+            <span class="notif-badge">1</span>
+          </button>
+          <div class="status-dropdown">
+            <span class="status-online-dot"></span>
+            <span>Online</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+        </div>
+      </header>
+
+      <!--DASHBOARD PAGE  (default visible) -->
+      <section id="page-dashboard" class="page-section">
+
+      <!-- ── Stat cards ── -->
+      <section class="stats-grid">
+
+        <div class="stat-card">
+          <div class="stat-icon-wrap">
+            <i class="fa-solid fa-bag-shopping"></i>
+          </div>
+          <div class="stat-body">
+            <p class="stat-label">Today's Deliveries</p>
+            <p class="stat-value">8</p>
+            <p class="stat-change positive"><i class="fa-solid fa-caret-up"></i> 2 from yesterday</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrap green">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <div class="stat-body">
+            <p class="stat-label">Completed</p>
+            <p class="stat-value">6</p>
+            <p class="stat-change positive"><i class="fa-solid fa-caret-up"></i> 2 from yesterday</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrap orange">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+          </div>
+          <div class="stat-body">
+            <p class="stat-label">In Progress</p>
+            <p class="stat-value">2</p>
+            <p class="stat-change warning"><i class="fa-solid fa-caret-up"></i> 1 from yesterday</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrap wallet">
+            <i class="fa-solid fa-wallet"></i>
+          </div>
+          <div class="stat-body">
+            <p class="stat-label">Today's Earnings</p>
+            <p class="stat-value earnings-val">FCFA 12,500</p>
+            <p class="stat-change positive"><i class="fa-solid fa-caret-up"></i> FCFA 1,500</p>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- PROFILE PAGE  (hidden until nav "Profile" clicked)-->
+      <section id="page-profile" class="page-section" style="display:none;">
+        <div class="profile-page-wrap">
+
+          <!-- Header -->
+          <div class="profile-page-header">
+            <h2 class="profile-page-title">My Profile</h2>
+            <p class="profile-page-sub">Manage your personal information and profile picture.</p>
+          </div>
+
+          <!-- Card -->
+          <div class="profile-form-card">
+
+            <!-- Avatar upload area -->
+            <div class="avatar-upload-area">
+              <div class="avatar-upload-ring" id="avatarRing">
+                <img
+                  id="profilePicPreview"
+                  src="images/rider-avatar.jpg"
+                  alt="Profile picture"
+                  onerror="this.src='https://ui-avatars.com/api/?name=Jean+Claude&background=c87941&color=fff&size=120'"
+                />
+                <label class="avatar-upload-btn" for="profilePicInput" title="Change photo">
+                  <i class="fa-solid fa-camera"></i>
+                </label>
+                <input type="file" id="profilePicInput" accept="image/*" hidden />
+              </div>
+              <p class="avatar-hint">Click the camera icon to upload a new photo</p>
+            </div>
+
+            <!-- Divider -->
+            <div class="form-divider"></div>
+
+            <!-- Form fields -->
+            <form id="profileForm" novalidate>
+
+              <div class="form-row">
+                <!-- Full Name -->
+                <div class="form-group">
+                  <label class="form-label" for="profileFullName">
+                    <i class="fa-regular fa-user"></i> Full Name
+                  </label>
+                  <input
+                    type="text"
+                    id="profileFullName"
+                    name="name"
+                    class="form-input"
+                    placeholder="Enter your full name"
+                    value="Jean Claude"
+                    autocomplete="name"
+                  />
+                  <span class="form-error" id="errName"></span>
+                </div>
+
+                <!-- Rider ID (read-only) -->
+                <div class="form-group">
+                  <label class="form-label" for="profileRiderCode">
+                    <i class="fa-solid fa-id-badge"></i> Rider ID
+                  </label>
+                  <input
+                    type="text"
+                    id="profileRiderCode"
+                    class="form-input form-input--readonly"
+                    value="#RDR2456"
+                    readonly
+                    aria-label="Rider ID (read only)"
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <!-- Email -->
+                <div class="form-group">
+                  <label class="form-label" for="profileEmail">
+                    <i class="fa-regular fa-envelope"></i> Email Address
+                  </label>
+                  <input
+                    type="email"
+                    id="profileEmail"
+                    name="email"
+                    class="form-input"
+                    placeholder="your@email.com"
+                    value="jean.claude@forkfresh.com"
+                    autocomplete="email"
+                  />
+                  <span class="form-error" id="errEmail"></span>
+                </div>
+
+                <!-- Phone -->
+                <div class="form-group">
+                  <label class="form-label" for="profilePhone">
+                    <i class="fa-solid fa-phone"></i> Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="profilePhone"
+                    name="phone"
+                    class="form-input"
+                    placeholder="+237 6 XX XXX XXX"
+                    value="+237678123456"
+                    autocomplete="tel"
+                  />
+                  <span class="form-error" id="errPhone"></span>
+                </div>
+              </div>
+
+              <!-- Vehicle type -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="profileVehicle">
+                    <i class="fa-solid fa-motorcycle"></i> Vehicle Type
+                  </label>
+                  <select id="profileVehicle" name="vehicle_type" class="form-input form-select">
+                    <option value="motorcycle" selected>Motorcycle</option>
+                    <option value="bicycle">Bicycle</option>
+                    <option value="car">Car</option>
+                  </select>
+                </div>
+
+                <!-- Rating (read-only) -->
+                <div class="form-group">
+                  <label class="form-label" for="profileRating">
+                    <i class="fa-solid fa-star"></i> Customer Rating
+                  </label>
+                  <input
+                    type="text"
+                    id="profileRating"
+                    class="form-input form-input--readonly"
+                    value="4.8 ★"
+                    readonly
+                    aria-label="Rating (read only)"
+                  />
+                </div>
+              </div>
+
+              <!-- ── Save Changes button  -->
+              <div class="form-actions">
+                <button type="button" class="btn-cancel-profile" id="btnCancelProfile">
+                  Cancel
+                </button>
+                <button type="submit" class="btn-save-profile" id="btnSaveProfile">
+                  <i class="fa-solid fa-floppy-disk"></i>
+                  Save Changes
+                </button>
+              </div>
+
+            </form>
+          </div><!-- /.profile-form-card -->
+        </div><!-- /.profile-page-wrap -->
+      </section>
+
+      <!-- ── Bottom grid: chart + donut + next order + performance ── -->
+      <section class="bottom-grid">
+
+        <!-- Earnings chart -->
+        <div class="card chart-card">
+          <div class="chart-header">
+            <div>
+              <p class="card-label">Today's Earnings</p>
+              <p class="card-big-val">FCFA 12,500</p>
+            </div>
+            <p class="chart-change positive"><i class="fa-solid fa-caret-up"></i> 18% vs yesterday</p>
+          </div>
+          <div class="chart-area">
+            <canvas id="earningsChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Donut chart -->
+        <div class="card donut-card">
+          <p class="card-title">Today's Deliveries</p>
+          <div class="donut-wrap">
+            <div class="donut-canvas-wrap">
+              <canvas id="donutChart" width="160" height="160"></canvas>
+              <div class="donut-center-label">
+                <span class="donut-pct">85%</span>
+                <span class="donut-sub">Completed</span>
+              </div>
+            </div>
+            <div class="donut-legend">
+              <div class="legend-row">
+                <span class="legend-dot completed-dot"></span>
+                <span class="legend-text">Completed</span>
+                <span class="legend-count">6 (75%)</span>
+              </div>
+              <div class="legend-row">
+                <span class="legend-dot inprogress-dot"></span>
+                <span class="legend-text">In Progress</span>
+                <span class="legend-count">2 (25%)</span>
+              </div>
+              <div class="legend-row">
+                <span class="legend-dot cancelled-dot"></span>
+                <span class="legend-text">Cancelled</span>
+                <span class="legend-count">0 (0%)</span>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="view-all-link">View all orders <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+
+        <!-- Next order -->
+        <div class="card next-order-card">
+          <div class="next-order-left">
+            <p class="card-title">Next Order</p>
+            <p class="next-order-id">#FF125687</p>
+            <p class="pickup-badge"><span class="pickup-dot"></span> Pick up in 15 min</p>
+
+            <div class="route-info">
+              <div class="route-point">
+                <p class="route-sub">Restaurant</p>
+                <p class="route-name">La Delice Buea</p>
+              </div>
+              <i class="fa-solid fa-arrow-right route-arrow"></i>
+              <div class="route-point">
+                <p class="route-sub">Drop-off</p>
+                <p class="route-name">Molyko, Buea</p>
+              </div>
+            </div>
+
+            <a href="../track-order/index.html" class="btn-view-details">View Details</a>
+          </div>
+
+          <div class="next-order-map">
+            <!-- Small inline map SVG -->
+            <svg viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg" class="mini-map-svg">
+              <rect width="220" height="180" fill="#e8e0d0"/>
+              <!-- Roads horizontal -->
+              <rect x="0" y="30" width="220" height="8" fill="#f5f0e8"/>
+              <rect x="0" y="75" width="220" height="7" fill="#fff"/>
+              <rect x="0" y="120" width="220" height="8" fill="#f5f0e8"/>
+              <rect x="0" y="155" width="220" height="7" fill="#f5f0e8"/>
+              <!-- Roads vertical -->
+              <rect x="30" y="0" width="7" height="180" fill="#f5f0e8"/>
+              <rect x="75" y="0" width="8" height="180" fill="#fff"/>
+              <rect x="130" y="0" width="7" height="180" fill="#f5f0e8"/>
+              <rect x="175" y="0" width="7" height="180" fill="#f5f0e8"/>
+              <!-- Blocks -->
+              <rect x="5" y="5" width="22" height="22" rx="2" fill="#d4c9b0"/>
+              <rect x="40" y="5" width="30" height="22" rx="2" fill="#cfc3a5"/>
+              <rect x="85" y="5" width="40" height="22" rx="2" fill="#d4c9b0"/>
+              <rect x="140" y="5" width="30" height="22" rx="2" fill="#e0d5c0"/>
+              <rect x="5" y="42" width="22" height="28" rx="2" fill="#d4c9b0"/>
+              <rect x="40" y="42" width="30" height="28" rx="2" fill="#e0d5c0"/>
+              <rect x="140" y="42" width="65" height="28" rx="2" fill="#d4c9b0"/>
+              <rect x="5" y="87" width="65" height="28" rx="2" fill="#d4c9b0"/>
+              <rect x="85" y="87" width="40" height="28" rx="2" fill="#e0d5c0"/>
+              <rect x="140" y="87" width="75" height="28" rx="2" fill="#b8d4a0" opacity="0.8"/>
+              <rect x="5" y="132" width="22" height="18" rx="2" fill="#d4c9b0"/>
+              <rect x="40" y="132" width="30" height="18" rx="2" fill="#e0d5c0"/>
+              <rect x="85" y="132" width="40" height="18" rx="2" fill="#d4c9b0"/>
+              <!-- Route line -->
+              <polyline
+                points="55,120 55,75 130,75 130,30 175,30 200,30"
+                fill="none" stroke="#1a5c1a" stroke-width="3"
+                stroke-linejoin="round" stroke-linecap="round"
+              />
+              <!-- Destination pin orange -->
+              <g transform="translate(48,112)">
+                <path d="M0,-18 C-7,-18 -12,-12 -12,-6 C-12,3 0,16 0,16 C0,16 12,3 12,-6 C12,-12 7,-18 0,-18 Z" fill="#e8652a"/>
+                <circle cx="0" cy="-6" r="5" fill="white"/>
+              </g>
+              <!-- Start marker green -->
+              <g transform="translate(196,22)">
+                <path d="M0,-14 C-5,-14 -9,-9 -9,-4 C-9,3 0,12 0,12 C0,12 9,3 9,-4 C9,-9 5,-14 0,-14 Z" fill="#1a5c1a"/>
+                <circle cx="0" cy="-4" r="4" fill="white"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Performance -->
+        <div class="card perf-card">
+          <p class="card-title">Performance <span class="perf-week">(This Week)</span></p>
+          <div class="perf-stats">
+            <div class="perf-item">
+              <p class="perf-label">Acceptance Rate</p>
+              <p class="perf-value">98%</p>
+            </div>
+            <div class="perf-item">
+              <p class="perf-label">On-time Delivery</p>
+              <p class="perf-value">96%</p>
+            </div>
+            <div class="perf-item">
+              <p class="perf-label">Customer Rating</p>
+              <p class="perf-value">4.8 <span class="star">&#9733;</span></p>
+            </div>
+          </div>
+          <a href="#" class="view-all-link perf-link">View full performance <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+
+      </section>
+
+      <!-- ===== FOOTER ===== -->
+      <footer>
+        <div>
+          <div class="footer-logo">
+            <img src="images/whiteand prange.PNG" alt="ForkFresh">
+          </div>
+          <p>Your favourite go-to frozen food delivery platform.</p>
+        </div>
+
+        <div>
+          <h3>Categories</h3>
+          <p>About Us</p>
+          <p>Terms &amp; Conditions</p>
+        </div>
+
+        <div>
+          <h3>Track Order</h3>
+          <p><a href="../track-order/index.html" style="color:#ccc;text-decoration:none;">Track Order</a></p>
+          <p>Contact Us</p>
+        </div>
+
+        <div>
+          <h3>Support</h3>
+          <p>Email</p>
+        </div>
+
+        <div>
+          <h3>Follow Us</h3>
+          <p>Facebook</p>
+          <p>TikTok</p>
+          <p>Instagram</p>
+        </div>
+      </footer>
+
+      </section><!-- /#page-dashboard -->
+
+    </div><!-- /.main-wrap -->
+  </div><!-- /.layout -->
+
+  <script src="script.js"></script>
+</body>
+</html>
