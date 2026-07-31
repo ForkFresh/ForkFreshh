@@ -381,19 +381,19 @@ CREATE TABLE IF NOT EXISTS push_subscriptions (
 -- Admin account  (password: admin123)
 INSERT IGNORE INTO admins (name, email, password_hash) VALUES
 ('ForkFresh Admin', 'admin@forkfresh.cm',
- '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uXkb.k3m6');
+ '$2y$10$q8GOIK1/5TGkfQY4IrV23uVbUFi1CJGtxTm9sUo/.I9DcTt8X7Lp6');
 
--- Demo customer  (password: password123)
+-- Demo customer  (password: customer123)
 INSERT IGNORE INTO users (first_name, last_name, email, phone, password_hash) VALUES
 ('Pauline', 'Demo', 'pauline@forkfresh.cm', '+237600000000',
- '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uXkb.k3m6');
+ '$2y$10$hEmo5rIXvNvAG8J./f4SOOXVVrwawCr9O/i8Pp.clogc.PENE9RMq');
 
 -- Demo riders  (password: rider123)
 INSERT IGNORE INTO riders (rider_code, name, email, phone, password_hash, status, rating) VALUES
 ('RDR2456', 'Jean Claude',  'jean.claude@forkfresh.cm',  '+237678123456',
- '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uXkb.k3m6', 'online',  4.80),
+ '$2y$10$cPwVMXEx4XXmyBx./yRGvufKlaMLjSAnffY2w2BFyT5/0xwh6htkm', 'online',  4.80),
 ('RDR1001', 'Marie Ngassa', 'marie.ngassa@forkfresh.cm', '+237699001122',
- '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uXkb.k3m6', 'offline', 4.60);
+ '$2y$10$cPwVMXEx4XXmyBx./yRGvufKlaMLjSAnffY2w2BFyT5/0xwh6htkm', 'offline', 4.60);
 
 -- Hero image
 INSERT IGNORE INTO hero_settings (id, image_url, alt_text) VALUES
