@@ -1,0 +1,843 @@
+/* ============================================================
+   ForkFresh – Master Stylesheet
+   Covers: Dashboard, Meal Plans, Manage Subscription,
+           Customize Meal Plan (all 3 steps)
+   No Bootstrap — pure custom CSS
+   ============================================================ */
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  --green-dark:   #1a6e1a;
+  --green-main:   #2d8a2d;
+  --green-light:  #4caf50;
+  --green-bg:     #f0f7f0;
+  --orange:       #e07820;
+  --orange-hover: #c96a18;
+  --white:        #ffffff;
+  --off-white:    #f9f9f9;
+  --border:       #e0e0e0;
+  --text-dark:    #1a1a1a;
+  --text-mid:     #444444;
+  --text-light:   #777777;
+  --shadow-sm:    0 1px 4px rgba(0,0,0,.08);
+  --shadow-md:    0 4px 14px rgba(0,0,0,.12);
+  --radius:       10px;
+  --radius-lg:    16px;
+  --sidebar-w:    220px;
+  --transition:   .22s ease;
+}
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 15px; scroll-behavior: smooth; }
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f4f4f4;
+  color: var(--text-dark);
+  line-height: 1.55;
+  min-height: 100vh;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+button { cursor: pointer; font-family: inherit; }
+input, textarea, select { font-family: inherit; }
+
+/* ---------- Layout: Sidebar + Main ---------- */
+.app-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--white);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  z-index: 200;
+  transition: transform var(--transition);
+}
+
+.sidebar-logo {
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-logo img { width: 120px; }
+.sidebar-logo span {
+  font-size: .78rem;
+  color: var(--text-light);
+}
+
+.sidebar nav { flex: 1; padding: 12px 0; overflow-y: auto; }
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 22px;
+  font-size: .93rem;
+  color: var(--text-mid);
+  border-left: 3px solid transparent;
+  transition: background var(--transition), color var(--transition);
+}
+.sidebar nav a:hover,
+.sidebar nav a.active {
+  background: var(--green-bg);
+  color: var(--green-dark);
+  border-left-color: var(--green-main);
+}
+.sidebar nav a .nav-icon { width: 18px; text-align: center; font-size: 1rem; }
+
+.sidebar nav a.logout-link { color: #c0392b; margin-top: 8px; }
+.sidebar nav a.logout-link:hover { background: #fdf0ee; border-left-color: #c0392b; }
+
+/* Home pill button */
+.sidebar-home-btn {
+  display: block;
+  margin: 12px 18px 4px;
+  background: var(--green-main);
+  color: var(--white) !important;
+  border-radius: 6px;
+  border-left: 3px solid transparent !important;
+  text-align: center;
+  font-weight: 600;
+  padding: 10px 0 !important;
+}
+.sidebar-home-btn:hover { background: var(--green-dark) !important; }
+
+/* ---------- Main Content Area ---------- */
+.main-content {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ---------- Top Bar (Dashboard header) ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 100;
+}
+.topbar-left { display: flex; align-items: center; gap: 12px; }
+.topbar-greeting h1 { font-size: 1.25rem; font-weight: 700; }
+.topbar-greeting p  { font-size: .85rem; color: var(--text-light); }
+
+.topbar-search {
+  display: flex;
+  align-items: center;
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 14px;
+  gap: 8px;
+  width: 260px;
+}
+.topbar-search input {
+  border: none; background: transparent; outline: none;
+  font-size: .9rem; width: 100%; color: var(--text-dark);
+}
+.topbar-search .search-icon { color: var(--text-light); font-size: 1rem; }
+
+.topbar-right { display: flex; align-items: center; gap: 16px; }
+.topbar-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--green-main);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: .95rem;
+}
+
+/* ---------- Page Content Padding ---------- */
+.page-body { padding: 26px 28px; flex: 1; }
+
+/* ---------- Section Title Row ---------- */
+.section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px;
+}
+.section-header h2 { font-size: 1.05rem; font-weight: 700; }
+.view-all-link { font-size: .83rem; color: var(--green-main); font-weight: 600; }
+.view-all-link:hover { text-decoration: underline; }
+
+/* ---------- Dashboard: Popular Dishes ---------- */
+.dishes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.dish-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.dish-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.dish-card img { width: 100%; height: 110px; object-fit: cover; }
+.dish-card-info { padding: 10px 12px; }
+.dish-card-info h3 { font-size: .88rem; font-weight: 600; margin-bottom: 4px; }
+.dish-card-info .dish-price { font-size: .82rem; color: var(--text-light); }
+
+/* ---------- Dashboard: Categories ---------- */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.category-card {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  height: 110px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+.category-card img { width: 100%; height: 100%; object-fit: cover; }
+.category-card .cat-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,.65));
+  color: #fff;
+  padding: 8px 12px;
+  font-size: .9rem; font-weight: 700;
+}
+.category-card.active-cat .cat-label { background: rgba(45,138,45,.82); }
+
+/* ---------- Dashboard: Promo Banner ---------- */
+.promo-banner {
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-main) 100%);
+  border-radius: var(--radius);
+  padding: 20px 26px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+.promo-banner .promo-text h2 { font-size: 1.6rem; font-weight: 800; }
+.promo-banner .promo-text p  { font-size: .85rem; opacity: .9; margin: 4px 0 10px; }
+.promo-code {
+  display: inline-block;
+  background: rgba(255,255,255,.18);
+  border: 1px dashed rgba(255,255,255,.6);
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: .85rem; letter-spacing: .08em; font-weight: 600;
+}
+.promo-banner img { width: 180px; border-radius: 8px; }
+
+/* ---------- Meal Plans Page ---------- */
+.meal-plans-page { background: var(--white); min-height: 100vh; }
+
+.plans-header {
+  padding: 30px 40px 0;
+}
+.plans-header h1 { font-size: 1.6rem; font-weight: 800; }
+.plans-header p  { color: var(--text-light); font-size: .92rem; margin-top: 4px; }
+
+.plans-header-row {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 0 40px; margin-top: 10px;
+}
+
+.btn-create-plan {
+  background: var(--green-main);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: .9rem;
+  font-weight: 600;
+  transition: background var(--transition);
+}
+.btn-create-plan:hover { background: var(--green-dark); }
+
+/* Plan cards grid */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 24px 40px 40px;
+}
+
+.plan-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 26px 22px 22px;
+  position: relative;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.plan-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+
+.plan-popular-badge {
+  position: absolute;
+  top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--green-main);
+  color: #fff;
+  padding: 4px 18px;
+  border-radius: 20px;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.plan-card h2 { font-size: 1.15rem; font-weight: 800; margin-bottom: 6px; }
+.plan-card .plan-tagline { font-size: .83rem; color: var(--text-light); margin-bottom: 14px; }
+
+.plan-price { font-size: 1.7rem; font-weight: 900; color: var(--text-dark); }
+.plan-price span { font-size: .82rem; font-weight: 500; color: var(--text-light); }
+
+.plan-features {
+  margin: 18px 0 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.plan-features li {
+  display: flex; align-items: center; gap: 8px;
+  font-size: .84rem; color: var(--text-mid);
+}
+.plan-features li .check-icon { color: var(--green-main); font-size: .9rem; }
+
+.btn-choose-plan {
+  width: 100%;
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 13px;
+  font-size: .95rem;
+  font-weight: 700;
+  transition: background var(--transition);
+}
+.btn-choose-plan:hover { background: var(--orange-hover); }
+
+/* ---------- Plans Benefits Bar ---------- */
+.plans-benefits {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin: 0 40px 40px;
+  padding: 18px 20px;
+  background: var(--white);
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.benefit-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: .85rem; color: var(--text-mid);
+}
+.benefit-item .b-icon { font-size: 1.3rem; color: var(--green-main); }
+
+/* ---------- Manage Subscription Page ---------- */
+.manage-sub-page { padding: 0; }
+
+.manage-sub-topbar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 18px 28px 0;
+}
+.manage-sub-topbar .page-logo img { width: 110px; }
+
+.manage-sub-header {
+  padding: 18px 28px 6px;
+  border-bottom: 1px solid var(--border);
+}
+.manage-sub-header h1 { font-size: 1.35rem; font-weight: 800; }
+.manage-sub-header p  { font-size: .85rem; color: var(--text-light); }
+
+/* Stats row */
+.sub-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 20px 28px;
+}
+.stat-box {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+.stat-box .stat-label { font-size: .78rem; color: var(--text-light); margin-bottom: 6px; }
+.stat-box .stat-value { font-size: 1.1rem; font-weight: 700; color: var(--text-dark); }
+
+/* Active plan card */
+.sub-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 0 28px 28px;
+}
+.active-plan-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+}
+.active-plan-card h2 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; }
+.active-plan-card .plan-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 12px; }
+.plan-detail-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: .87rem; color: var(--text-mid);
+  margin-bottom: 8px;
+}
+.plan-detail-item .d-icon { color: var(--green-main); }
+.plan-billing { margin-top: 6px; font-size: .82rem; color: var(--text-light); }
+
+.plan-action-btns { display: flex; gap: 14px; margin-top: 22px; }
+
+.btn-pause {
+  background: var(--white);
+  border: 2px solid var(--green-main);
+  color: var(--green-main);
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: .9rem;
+  font-weight: 700;
+  transition: background var(--transition), color var(--transition);
+}
+.btn-pause:hover { background: var(--green-main); color: #fff; }
+
+.btn-change-plan {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: .9rem;
+  font-weight: 700;
+  transition: background var(--transition);
+}
+.btn-change-plan:hover { background: var(--orange-hover); }
+
+/* ---------- Upcoming Deliveries ---------- */
+.deliveries-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+}
+.deliveries-card h2 { font-size: 1rem; font-weight: 700; margin-bottom: 14px; }
+.delivery-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.delivery-item:last-child { border-bottom: none; }
+.delivery-icon {
+  width: 38px; height: 38px;
+  background: var(--green-bg);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--green-main);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.delivery-info .delivery-date { font-size: .9rem; font-weight: 600; }
+.delivery-info .delivery-meal { font-size: .8rem; color: var(--text-light); }
+.deliveries-view-all {
+  display: block; text-align: right;
+  font-size: .82rem; color: var(--green-main); margin-top: 12px; font-weight: 600;
+}
+
+/* ---------- Customize Meal Plan (3-step wizard) ---------- */
+.customize-page { background: var(--white); }
+
+.customize-header {
+  padding: 22px 36px 0;
+  border-bottom: 1px solid var(--border);
+}
+.customize-header h1 { font-size: 1.3rem; font-weight: 800; }
+.customize-header p  { font-size: .85rem; color: var(--text-light); margin-top: 3px; }
+
+/* Step tabs */
+.step-tabs {
+  display: flex;
+  gap: 0;
+  margin: 20px 36px 0;
+  border-bottom: 2px solid var(--border);
+}
+.step-tab {
+  padding: 10px 28px;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--text-light);
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  cursor: default;
+  user-select: none;
+  transition: color var(--transition), border-color var(--transition);
+}
+.step-tab.active   { color: var(--green-dark); border-bottom-color: var(--green-main); }
+.step-tab.completed { color: var(--green-main); }
+
+/* Step panels */
+.step-panel { display: none; padding: 28px 36px; }
+.step-panel.active { display: block; }
+
+.step-section-title { font-size: 1rem; font-weight: 700; margin-bottom: 14px; }
+
+/* Option chips (diet prefs, spice) */
+.chip-group { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+.chip-label {
+  display: flex; align-items: center; gap: 6px;
+  border: 1.5px solid var(--border);
+  border-radius: 30px;
+  padding: 7px 16px;
+  font-size: .85rem;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), color var(--transition);
+  user-select: none;
+}
+.chip-label input[type="radio"],
+.chip-label input[type="checkbox"] { display: none; }
+.chip-label:hover { border-color: var(--green-main); }
+.chip-label.selected {
+  border-color: var(--green-main);
+  background: var(--green-main);
+  color: #fff;
+}
+.chip-label .chip-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  border: 2px solid currentColor;
+  display: inline-block;
+}
+.chip-label.selected .chip-dot { background: #fff; }
+
+/* ---------- Food Preference icon cards ---------- */
+.food-pref-grid {
+  display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 22px;
+}
+.food-card-label {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  cursor: pointer;
+  min-width: 90px;
+  text-align: center;
+  transition: border-color var(--transition), background var(--transition);
+  position: relative;
+  user-select: none;
+}
+.food-card-label input[type="checkbox"] { display: none; }
+.food-card-label .food-emoji { font-size: 2rem; }
+.food-card-label span { font-size: .82rem; font-weight: 600; color: var(--text-mid); }
+.food-card-label:hover { border-color: var(--green-main); }
+.food-card-label.selected {
+  border-color: var(--green-main);
+  background: var(--green-bg);
+}
+.food-card-label .check-badge {
+  position: absolute; top: 6px; right: 8px;
+  width: 18px; height: 18px;
+  background: var(--green-main);
+  border-radius: 50%;
+  color: #fff;
+  font-size: .65rem;
+  display: none;
+  align-items: center; justify-content: center;
+}
+.food-card-label.selected .check-badge { display: flex; }
+
+/* ---------- Allergen cards ---------- */
+.allergen-grid {
+  display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 22px;
+}
+.allergen-label {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  cursor: pointer;
+  min-width: 80px;
+  text-align: center;
+  position: relative;
+  transition: border-color var(--transition), background var(--transition);
+  user-select: none;
+}
+.allergen-label input[type="checkbox"] { display: none; }
+.allergen-label .allergen-emoji { font-size: 1.8rem; }
+.allergen-label span { font-size: .8rem; color: var(--text-mid); font-weight: 600; }
+.allergen-label:hover { border-color: var(--green-main); }
+.allergen-label.selected { border-color: var(--green-main); background: var(--green-bg); }
+.allergen-label .check-badge {
+  position: absolute; top: 5px; right: 7px;
+  width: 16px; height: 16px;
+  background: var(--green-main);
+  border-radius: 50%;
+  color: #fff; font-size: .6rem;
+  display: none; align-items: center; justify-content: center;
+}
+.allergen-label.selected .check-badge { display: flex; }
+
+/* Additional info textarea */
+.additional-info-box {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: .88rem;
+  color: var(--text-dark);
+  resize: vertical;
+  min-height: 90px;
+  outline: none;
+  transition: border-color var(--transition);
+}
+.additional-info-box:focus { border-color: var(--green-main); }
+
+/* Step navigation buttons */
+.step-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 36px;
+  border-top: 1px solid var(--border);
+  background: var(--white);
+  position: sticky; bottom: 0;
+}
+.btn-step-back {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  color: var(--text-mid);
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: .9rem; font-weight: 600;
+  transition: border-color var(--transition), color var(--transition);
+}
+.btn-step-back:hover { border-color: var(--green-main); color: var(--green-main); }
+
+.btn-step-next {
+  background: var(--green-main);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 28px;
+  font-size: .9rem; font-weight: 700;
+  transition: background var(--transition);
+}
+.btn-step-next:hover { background: var(--green-dark); }
+
+.btn-create-my-plan {
+  background: var(--green-main);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 28px;
+  font-size: .9rem; font-weight: 700;
+  display: flex; align-items: center; gap: 8px;
+  transition: background var(--transition);
+}
+.btn-create-my-plan:hover { background: var(--green-dark); }
+
+/* ---------- Review Step Summary Cards ---------- */
+.review-summary { margin-bottom: 20px; }
+.review-summary h2 { font-size: .95rem; font-weight: 700; margin-bottom: 14px; }
+
+.review-cards-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.review-card {
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  min-width: 160px;
+  flex: 1;
+}
+.review-card .rc-icon { font-size: 1.4rem; margin-bottom: 8px; color: var(--green-main); }
+.review-card .rc-label { font-size: .75rem; color: var(--text-light); margin-bottom: 4px; }
+.review-card .rc-value { font-size: .9rem; font-weight: 700; }
+
+.review-detail-row {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  background: var(--white);
+}
+.review-detail-row .rd-label { font-size: .85rem; font-weight: 600; }
+.review-detail-row .rd-value { font-size: .84rem; color: var(--text-mid); }
+.review-detail-row .rd-chevron { color: var(--text-light); font-size: .85rem; }
+
+/* ---------- Footer (shared across pages) ---------- */
+.site-footer {
+  background: var(--green-dark);
+  color: rgba(255,255,255,.9);
+  padding: 30px 40px 20px;
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr 1.2fr;
+  gap: 28px;
+  max-width: 1100px;
+}
+.footer-brand .fb-logo { width: 100px; margin-bottom: 8px; filter: brightness(10); }
+.footer-brand p { font-size: .8rem; line-height: 1.6; opacity: .85; }
+
+.footer-col h4 { font-size: .88rem; font-weight: 700; margin-bottom: 10px; letter-spacing: .02em; }
+.footer-col a {
+  display: block; font-size: .82rem;
+  opacity: .85; margin-bottom: 6px;
+  transition: opacity var(--transition);
+}
+.footer-col a:hover { opacity: 1; text-decoration: underline; }
+
+.footer-social { display: flex; gap: 12px; margin-top: 8px; }
+.social-icon {
+  width: 34px; height: 34px;
+  background: rgba(255,255,255,.18);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; color: #fff;
+  transition: background var(--transition);
+}
+.social-icon:hover { background: rgba(255,255,255,.35); }
+
+.footer-bottom {
+  text-align: center;
+  font-size: .75rem;
+  opacity: .65;
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,.2);
+}
+
+/* ---------- Hamburger (mobile toggle) ---------- */
+.sidebar-toggle {
+  display: none;
+  background: none; border: none;
+  font-size: 1.4rem; color: var(--text-dark);
+  padding: 4px 8px;
+}
+
+/* ---------- Toast / Alert ---------- */
+.toast-container {
+  position: fixed; bottom: 24px; right: 24px;
+  display: flex; flex-direction: column; gap: 10px;
+  z-index: 9999;
+}
+.toast {
+  background: var(--text-dark); color: #fff;
+  padding: 12px 20px; border-radius: 8px;
+  font-size: .88rem; box-shadow: var(--shadow-md);
+  animation: slideIn .3s ease;
+  max-width: 320px;
+}
+.toast.success { background: var(--green-main); }
+.toast.error   { background: #c0392b; }
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ---------- Utility ---------- */
+.mt-0 { margin-top: 0; }
+.mb-12 { margin-bottom: 12px; }
+.text-green { color: var(--green-main); }
+.text-orange { color: var(--orange); }
+.text-light  { color: var(--text-light); }
+.fw-700 { font-weight: 700; }
+.badge-active {
+  display: inline-block; background: #e6f9e6; color: var(--green-dark);
+  border-radius: 20px; padding: 2px 10px; font-size: .75rem; font-weight: 700;
+}
+.badge-paused {
+  display: inline-block; background: #fff3e0; color: #e07820;
+  border-radius: 20px; padding: 2px 10px; font-size: .75rem; font-weight: 700;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+/* Tablet – 1024px */
+@media (max-width: 1024px) {
+  .plans-grid    { grid-template-columns: repeat(2, 1fr); }
+  .dishes-grid   { grid-template-columns: repeat(2, 1fr); }
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
+  .sub-stats     { grid-template-columns: repeat(2, 1fr); }
+  .sub-body      { grid-template-columns: 1fr; }
+  .footer-inner  { grid-template-columns: 1fr 1fr; gap: 22px; }
+}
+
+/* Mobile – 768px */
+@media (max-width: 768px) {
+  :root { --sidebar-w: 0px; }
+
+  .sidebar {
+    transform: translateX(-100%);
+    width: 240px;
+    box-shadow: var(--shadow-md);
+  }
+  .sidebar.open { transform: translateX(0); }
+
+  .main-content { margin-left: 0; }
+
+  .sidebar-toggle { display: block; }
+
+  .topbar { padding: 12px 16px; }
+  .topbar-search { width: 180px; }
+  .page-body { padding: 16px; }
+
+  .plans-header, .plans-header-row { padding: 16px; }
+  .plans-grid { grid-template-columns: 1fr; padding: 16px; }
+  .plans-benefits { margin: 0 16px 24px; }
+
+  .sub-stats { grid-template-columns: 1fr 1fr; }
+  .manage-sub-header, .sub-stats, .sub-body { padding-left: 16px; padding-right: 16px; }
+
+  .customize-header, .step-panel, .step-nav { padding-left: 16px; padding-right: 16px; }
+  .step-tabs { margin: 16px 16px 0; }
+  .step-tab { padding: 10px 14px; font-size: .82rem; }
+
+  .food-pref-grid, .allergen-grid { gap: 10px; }
+  .food-card-label, .allergen-label { min-width: 72px; padding: 10px 12px; }
+
+  .review-cards-row { flex-direction: column; }
+
+  .promo-banner { flex-direction: column; gap: 14px; }
+  .promo-banner img { width: 100%; }
+
+  .footer-inner { grid-template-columns: 1fr; }
+  .plan-action-btns { flex-direction: column; }
+}
+
+/* Small phones – 480px */
+@media (max-width: 480px) {
+  .dishes-grid   { grid-template-columns: 1fr; }
+  .categories-grid { grid-template-columns: 1fr; }
+  .sub-stats { grid-template-columns: 1fr; }
+  .topbar-search { display: none; }
+}
+
+/* ============================================================
+   SIDEBAR OVERLAY (mobile backdrop)
+   ============================================================ */
+.sidebar-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 199;
+}
+.sidebar-overlay.visible { display: block; }

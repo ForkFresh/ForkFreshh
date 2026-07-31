@@ -1,0 +1,6 @@
+-- This file is an alias. The full unified schema is in:
+-- database/forkfresh_db.sql
+--
+-- To set up the database, import database/forkfresh_db.sql
+-- into phpMyAdmin or run:
+--   mysql -u root -p < database/forkfresh_db.sql
