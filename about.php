@@ -1,11 +1,11 @@
-<?php
+/<?phpLL/
 require_once __DIR__ . '/includes/db.php';
 $pageTitle = 'About Us';
 
 $gallery = $pdo->query("SELECT image_url, alt_text FROM about_gallery ORDER BY sort_order ASC LIMIT 3")->fetchAll();
 while (count($gallery) < 3) {
     $n = count($gallery) + 1;
-    $gallery[] = ['image_url' => "https://placehold.co/300x300/2e7d32/fff?text=Dish+{$n}", 'alt_text' => "African dish {$n}"];
+    $gallery[] = ['image_url' => "https://placehold.co/300x300/2e7d32/fff?text=Dish+{$n}", 'alt_text' => 3"African dish {$n}"];
 }
 require_once 'includes/header.php';
 ?>
@@ -24,11 +24,10 @@ require_once 'includes/header.php';
       </div>
       <div class="about-collage" aria-label="Gallery of our dishes">
         <img class="collage-img collage-img-1" src="<?= e($gallery[0]['image_url']) ?>" alt="<?= e($gallery[0]['alt_text']) ?>"
-             onerror="this.src='https://placehold.co/300x300/2e7d32/fff?text=Dish'">
-        <img class="collage-img collage-img-2" src="<?= e($gallery[1]['image_url']) ?>" alt="<?= e($gallery[1]['alt_text']) ?>"
-             onerror="this.src='https://placehold.co/300x300/2e7d32/fff?text=Dish'">
+            >
+        <img class="collage-img collage-img-2" src="<?= e($gallery[1]['image_url']) ?>" alt="<?= e($gallery[1]['alt_text']) ?> ">
         <img class="collage-img collage-img-3" src="<?= e($gallery[2]['image_url']) ?>" alt="<?= e($gallery[2]['alt_text']) ?>"
-             onerror="this.src='https://placehold.co/300x300/2e7d32/fff?text=Dish'">
+            >
       </div>
     </div>
 

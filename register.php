@@ -54,7 +54,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <title>Register – ForkFresh</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    :root { --green:#2e7d32; --green-dark:#1b5e20; --orange:#f57c00; --border:#e0e0e0; --bg:#f4f4f4; --white:#ffffff; --radius:10px; --shadow:0 4px 20px rgba(0,0,0,.10); }
+    :root { --green:#2e7d32;
+     --green-dark:#1b5e20;
+      --orange:#f57c00;
+       --border:#e0e0e0;
+        --bg:#f4f4f4; 
+        --white:#ffffff;
+         --radius:10px; 
+         --shadow:0 4px 20px rgba(0,0,0,.10); }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family:'Segoe UI',Arial,sans-serif; background:var(--bg); min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px; }
     .auth-card { background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); width:100%; max-width:460px; padding:36px 32px; }
@@ -82,14 +89,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .back-home a { color:#888; text-decoration:none; }
     .back-home a:hover { color:var(--green); }
     @media(max-width:480px){ .form-row { grid-template-columns:1fr; } }
+
+    .logo img{
+    width:190px;
+}
   </style>
 </head>
 <body>
 <div class="auth-card">
   <div class="brand">
-    <a href="<?= BASE_URL ?>index.php">
-      <div class="brand-name">fork<span>fresh</span></div>
-    </a>
+   <div class="logo">
+      <a href="<?= BASE_URL ?>index.php">
+        <img src="<?= BASE_URL ?>assets/images/IMG_8023.PNG" alt="ForkFresh" onerror="this.outerHTML='<span style=\'font-weight:900;font-size:1.3rem;color:#2e7d32\'>fork<span style=\'color:#f57c00\'>fresh</span></span>'">
+      </a>
+    </div>
     <p class="brand-tagline">AFRICAN DELICACIES, DELIVERED FRESH</p>
   </div>
 

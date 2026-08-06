@@ -161,14 +161,19 @@ $pageRole   = $roleTitles[$role] ?? 'Customer';
     .back-home { text-align: center; margin-top: 14px; font-size: .82rem; }
     .back-home a { color: #888; text-decoration: none; }
     .back-home a:hover { color: var(--green); }
+.logo img{
+    width:190px;
+}
   </style>
 </head>
 <body>
 <div class="auth-card">
   <div class="brand">
-    <a href="<?= BASE_URL ?>index.php">
-      <div class="brand-name">fork<span>fresh</span></div>
-    </a>
+     <div class="logo">
+      <a href="<?= BASE_URL ?>index.php">
+        <img src="<?= BASE_URL ?>assets/images/IMG_8023.PNG" alt="ForkFresh" onerror="this.outerHTML='<span style=\'font-weight:900;font-size:1.3rem;color:#2e7d32\'>fork<span style=\'color:#f57c00\'>fresh</span></span>'">
+      </a>
+    </div>
     <p class="brand-tagline">AFRICAN DELICACIES, DELIVERED FRESH</p>
   </div>
 
@@ -181,7 +186,7 @@ $pageRole   = $roleTitles[$role] ?? 'Customer';
       <i class="fa fa-motorcycle"></i> Rider
     </a>
     <a href="login.php?role=admin" class="role-tab <?= $role === 'admin' ? 'active' : '' ?>" role="tab">
-      <i class="fa fa-shield-halved"></i> Admin
+      <i class="fa fa-shield-halved"></i> 
     </a>
   </div>
 

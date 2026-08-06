@@ -26,14 +26,15 @@ require_once 'includes/header.php';
       <p class="sub">Fresh ingredients. Rich flavors,<br>Fast delivery. 100% Convenience.</p>
       <div class="hero-actions">
         <a href="categories.php" class="btn btn-green">Order Now</a>
-        <a href="about.php" class="btn btn-outline">Explore Meal Plans</a>
+        <a href="login.php" class="btn btn-outline">Explore Meal Plans</a>
       </div>
     </div>
-    <div class="hero-visual">
+    <div clas ls="hero-visual">
       <img class="hero-main-img"
-           src="<?= e($heroImg) ?>"
+           src="<?= e($heroImg) ?>" m 
            alt="Authentic African dish"
-           onerror="this.src='https://placehold.co/360x360/2e7d32/fff?text=ForkFresh'">
+           >
+
       <div class="hero-badge" aria-label="100% Fresh and Hygienic">
         <i class="fa fa-check-circle" aria-hidden="true"></i>
         100% Fresh<br>&amp; Hygienic
@@ -52,7 +53,10 @@ require_once 'includes/header.php';
   </div>
 </section>
 
-<!-- CATEGORIES -->
+<!-- CATEGORIES SECTION
+ DEF of some terms:
+ * lazy loading is a web design and programming technique that delays loading non-critical resource like images or scripts until the user actually needs them
+ * URL Slug is the specific human-readable part of a web address that appears after the domain name, identifying a unique page, it improves search optimization  -->
 <section class="categories-section">
   <div class="container">
     <h2 class="section-title">Shop by Category</h2>
@@ -67,7 +71,7 @@ require_once 'includes/header.php';
       <?php endforeach; ?>
     </div>
     <?php else: ?>
-    <p style="color:#777;">No categories found.</p>
+    <p style="color:black;">No categories found.</p>
     <?php endif; ?>
   </div>
 </section>
@@ -95,7 +99,7 @@ require_once 'includes/header.php';
       <?php endforeach; ?>
     </div>
     <?php else: ?>
-    <p style="color:#777;">No featured products found.</p>
+    <p style="color:black;">No featured products found.</p>
     <?php endif; ?>
   </div>
 </section>

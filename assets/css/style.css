@@ -130,7 +130,7 @@ input, textarea, select { font-family: inherit; }
   border-radius: 50%; box-shadow: var(--shadow);
 }
 .hero-badge {
-  position: absolute; bottom: 16px; right: 10px;
+  position: absolute; bottom: 15px; right: 10px;
   background: var(--green); color: var(--white);
   border-radius: 50%; width: 88px; height: 88px;
   display: flex; flex-direction: column;
@@ -161,7 +161,7 @@ input, textarea, select { font-family: inherit; }
 
 /* CATEGORIES STRIP */
 .categories-section { padding: 32px 0 20px; }
-.cat-grid { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x mandatory; }
+.cat-grid { display: flex; gap: 130px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x mandatory; }
 .cat-grid::-webkit-scrollbar { height: 4px; }
 .cat-grid::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
@@ -177,12 +177,8 @@ input, textarea, select { font-family: inherit; }
   background: rgba(0,0,0,.55); color: var(--white);
   font-size: .78rem; font-weight: 600; padding: 7px 10px; text-align: center;
 }
-/* First card accent (Frozen Food has a light-coloured card in the design) */
-.cat-card:first-child .cat-label { background: rgba(255,255,255,.85); color: var(--text-dark); }
 
-/* ================================================
-   PRODUCTS GRID
-   ================================================ */
+/* PRODUCTS GRID */
 .products-section { padding: 18px 0 44px; }
 .product-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
 
@@ -198,7 +194,7 @@ input, textarea, select { font-family: inherit; }
 .product-price { font-size: .82rem; color: var(--text-mid); font-weight: 500; }
 
 
-   <!--FOOTER
+  /*FOOTER*/
    
 footer{
     background:var(--green-dark);
@@ -220,9 +216,7 @@ footer p{
     color:#ccc;
 }
 
-/* ================================================
-   ABOUT PAGE
-   ================================================ */
+/*ABOUT PAGE */
 .about-section { padding: 60px 0 50px; }
 
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
@@ -238,7 +232,7 @@ footer p{
 /* Image collage */
 .about-collage { position: relative; height: 380px; }
 .collage-img { position: absolute; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); }
-.collage-img-1 { width: 55%; height: 55%; top: 0;   right: 0;   border-radius: 50%; }
+.collage-img-1 { width: 55%; height: 55%; top: 0;   right: 20%; }
 .collage-img-2 { width: 46%; height: 48%; bottom: 20px; right: 0; }
 .collage-img-3 { width: 40%; height: 44%; bottom: 0;  right: 44%; }
 
@@ -262,9 +256,7 @@ footer p{
 .mv-card h3 { font-size: .95rem; font-weight: 700; margin-bottom: 8px; }
 .mv-card p  { font-size: .87rem; color: var(--text-mid); line-height: 1.7; }
 
-/* ================================================
-   RESPONSIVE
-   ================================================ */
+/* RESPONSIVE*/
 @media (max-width: 1024px) {
   .product-grid { grid-template-columns: repeat(4, 1fr); }
   .about-grid   { gap: 36px; }
@@ -310,10 +302,8 @@ footer p{
   .hero-text h1 { font-size: 1.6rem; }
 }
 
-/* ================================================
-   ADDITIONS – cart badge, footer, contact grid,
-   hamburger button, active nav dot
-   ================================================ */
+/* ADDITIONS – cart badge, footer, contact grid,
+   hamburger button, active nav dot */
 
 /* Cart badge */
 .cart-btn { position: relative; font-size: 1.3rem; text-decoration: none; }
