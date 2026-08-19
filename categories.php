@@ -95,7 +95,7 @@ require_once 'includes/header.php';
           <?php endif; ?>
           <form method="POST" action="customer/add-to-cart.php" style="margin-top:10px;">
             <input type="hidden" name="product_id" value="<?= (int)$p['id'] ?>">
-            <input type="hidden" name="redirect"   value="<?= e(BASE_URL . 'categories.php' . ($_SERVER['QUERY_STRING'] ? '?'.$_SERVER['QUERY_STRING'] : '')) ?>">
+            <input type="hidden" name="redirect" value="<?= e(BASE_URL . 'categories.php' . (!empty($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : '')) ?>">
             <button type="submit" class="btn-add-cart-pub">
               <i class="fa fa-cart-plus"></i> Add to Cart
             </button>

@@ -1,11 +1,11 @@
-/<?phpLL/
+<?php
 require_once __DIR__ . '/includes/db.php';
 $pageTitle = 'About Us';
 
 $gallery = $pdo->query("SELECT image_url, alt_text FROM about_gallery ORDER BY sort_order ASC LIMIT 3")->fetchAll();
 while (count($gallery) < 3) {
     $n = count($gallery) + 1;
-    $gallery[] = ['image_url' => "https://placehold.co/300x300/2e7d32/fff?text=Dish+{$n}", 'alt_text' => 3"African dish {$n}"];
+    $gallery[] = ['image_url' => "https://placehold.co/300x300/2e7d32/fff?text=Dish+{$n}", 'alt_text' => "African dish {$n}"];
 }
 require_once 'includes/header.php';
 ?>
